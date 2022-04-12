@@ -83,26 +83,17 @@ public class SESService {
         message.setFrom(new InternetAddress(sender));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
 
-        MimeMultipart msgBody = new MimeMultipart();
-
-        MimeBodyPart wrap = new MimeBodyPart();
-
         MimeBodyPart textPart = new MimeBodyPart();
         textPart.setContent(bodyText, "text/plain; charset=UTF-8");
 
         MimeBodyPart htmlPart = new MimeBodyPart();
         htmlPart.setContent(bodyHTML, "text/html; charset=UTF-8");
 
+        MimeMultipart msgBody = new MimeMultipart();
         msgBody.addBodyPart(textPart);
         msgBody.addBodyPart(htmlPart);
 
-        wrap.setContent(msgBody);
-
-        MimeMultipart msg = new MimeMultipart();
-
-        message.setContent(msg);
-
-        msg.addBodyPart(wrap);
+        message.setContent(msgBody);
 
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
