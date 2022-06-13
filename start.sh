@@ -1,6 +1,7 @@
 #!/bin/bash
-export CLASSPATH=target/ses_aws-1.0-SNAPSHOT.jar
 export className=App
-echo "## Running $className..."
-shift
+
+export AWS_ACCESS_KEY=""
+export AWS_SECRET_KEY=""
+
 mvn exec:java -Dexec.mainClass="br.com.ses_sender.$className"
